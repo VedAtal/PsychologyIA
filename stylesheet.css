@@ -1,0 +1,80 @@
+#anchorbox
+{
+	position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#equationbox
+{
+	position: fixed;
+    top: 43%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+}
+#HLbox
+{
+	position: fixed;
+    top: 55%;
+    left: 39%;
+    transform: translate(-50%, -50%);
+}
+#answerbox
+{
+	position: fixed;
+    top: 55%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+}
+#button
+{
+	position: fixed;
+    top: 67%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+}
+#endbox
+{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	text-align: center;
+}
+#timeDisplay
+{
+    position: fixed;
+    right: 0%;
+    bottom: 0%;
+    margin-right: 60px;
+    font-size: 50px;
+    color: red;
+}
+#answerbox2
+{
+	position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#button2
+{
+	position: fixed;
+    top: 67%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#equationbox2
+{
+	position: fixed;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#begin
+{
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

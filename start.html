@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<title>Practice</title>
+        <link href="stylesheet.css" type="text/css" rel="stylesheet">
+	</head>
+	<body style="font-size: 30px;">
+		<div id="equationbox2">
+			<p style="display: inline;" id="equation1">0</p>
+			<p style="display: inline;" id="equation2">+</p>
+			<p style="display: inline;" id="equation3">0</p>
+			<p style="display: inline;" id="equation4">+</p>
+			<p style="display: inline;" id="equation5">0</p>
+			<p style="display: inline;" id="equation6">=</p>
+		</div>
+		<div id="answerbox2" style="text-align: center;">
+			<p>Answer:</p>
+			<input size="10" style="height: 30px; font-size: 30px;" type="text" id="inputbox"><br><br>
+		</div>
+		<div id="timeDisplay">
+			<p id="time">0</p>
+		</div>
+		<button onclick="sumbitAnswer()" id="button2" style="font-size: 30px; height: 40px;">Start</button>
+		<button onclick="document.location='test.html'" id="begin" style="font-size: 30px; height: 40px; visibility: hidden;">Begin Test</button>
+		<script>
+			var round = 0; 
+			var no1 = 0;
+			var no2 = 0;
+			var no3 = 0;
+			function sumbitAnswer()
+			{
+				document.getElementById("button2").innerHTML="Submit";
+				if(round>=10)
+				{
+					document.getElementById("begin").style.visibility = "visible";
+					document.getElementById("button2").style.visibility = "hidden";
+					return;
+				}
+				nextEquation();
+				inputbox.value = null;
+				timer();
+				round++;
+			}
+			function nextEquation()
+			{
+				no1 = Math.floor(Math.random()*(900-100+1)+100);
+				no2 = Math.floor(Math.random()*(700-100+1)+100);
+				var sum = no1+no2;
+				var no3max = 1900-(sum);
+				var no3min = 1100-(sum);
+				if(no3min<100){no3min=100;}
+				no3 = Math.floor(Math.random()*(no3max-no3min+1)+no3min);
+				document.getElementById("equation1").innerHTML=no1;
+				document.getElementById("equation3").innerHTML=no2;
+				document.getElementById("equation5").innerHTML=no3;
+			}
+			function hideEquation()
+			{
+				document.getElementById("equation1").style.visibility = "hidden";
+				document.getElementById("equation2").style.visibility = "hidden";
+				document.getElementById("equation3").style.visibility = "hidden";
+				document.getElementById("equation4").style.visibility = "hidden";
+				document.getElementById("equation5").style.visibility = "hidden";
+				document.getElementById("equation6").style.visibility = "hidden";
+			}
+			function showEquation()
+			{
+				document.getElementById("equation1").style.visibility = "visible";
+				document.getElementById("equation2").style.visibility = "visible";
+				document.getElementById("equation3").style.visibility = "visible";
+				document.getElementById("equation4").style.visibility = "visible";
+				document.getElementById("equation5").style.visibility = "visible";
+				document.getElementById("equation6").style.visibility = "visible";
+			}
+			function displayTime(timeleft)
+			{
+				document.getElementById("time").innerHTML=timeleft;
+			}
+			function timer()
+			{
+				showEquation();
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(0000).then(() => displayTime(4));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(1000).then(() => displayTime(3));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(2000).then(() => displayTime(2));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(3000).then(() => displayTime(1));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(4000).then(() => displayTime(0));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(4000).then(() => hideEquation());
+			}
+
+		</script>
+	</body>
+</html>

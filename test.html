@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<title>Test</title>
+        <link href="stylesheet.css" type="text/css" rel="stylesheet">
+	</head>
+	<body style="font-size: 30px;">
+		<div id="anchorbox">
+			<p style="display: inline;">Is the following equation higher or lower than</p>
+			<p style="display: inline;" id="anchor"></p>
+			<p style="display: inline;">?</p>
+		</div>
+		<div id="equationbox">
+			<p style="display: inline; visibility: hidden" id="equation1">0</p>
+			<p style="display: inline; visibility: hidden" id="equation2">+</p>
+			<p style="display: inline; visibility: hidden" id="equation3">0</p>
+			<p style="display: inline; visibility: hidden" id="equation4">+</p>
+			<p style="display: inline; visibility: hidden" id="equation5">0</p>
+			<p style="display: inline; visibility: hidden;" id="equation6">=</p>
+		</div>
+		<div id="HLbox">
+			<input onclick="localStorage.setItem('HL', 'higher');document.getElementById('lower').checked = null" type="checkbox" id="higher">
+			<label for="higher">Higher</label><br><br>
+			<input onclick="localStorage.setItem('HL', 'lower');document.getElementById('higher').checked = null" type="checkbox" id="lower">
+			<label for="lower">Lower</label><br>
+		</div>
+		<div id="answerbox">
+			<p>Answer:</p>
+			<input size="10" style="height: 30px; font-size: 30px;" type="text" id="inputbox"><br><br>
+		</div>
+		<div id="timeDisplay">
+			<p id="time">0</p>
+		</div>
+		<button onclick="sumbitAnswer()" id="button" style="font-size: 30px; height: 40px;">Start</button>
+		<script>
+			var round = 1; 
+			var anchor = 0; 
+			var no1 = 0;
+			var no2 = 0;
+			var no3 = 0;
+			var data = [];
+			localStorage.setItem("HL", "neither");
+			function sumbitAnswer()
+			{
+				document.getElementById("button").innerHTML="Submit";
+				data = ["1 = " + no1, "2 = " + no2, "3 = " + no3, "A = " + anchor, "HL = " + localStorage.getItem("HL"), "I = " + inputbox.value, "C = " + (no1+no2+no3)];
+				localStorage.setItem(round-1, data);
+				if(round>=13)
+				{
+					document.location='end.html';
+					return;
+				}
+				nextEquation();
+				if(round==1 || round==4 || round==7 || round==9 || round==12)
+				{
+					lowAnchor();
+				}
+				else if(round==2 || round==5 || round==6 || round==10 || round==11)
+				{
+					highAnchor();
+				}
+				else if(round==8 || round==3)
+				{
+					filler();
+				}
+				inputbox.value = null;
+				document.getElementById("higher").checked = null;
+				document.getElementById("lower").checked = null;
+				timer();
+				round++;
+			}
+			function nextEquation()
+			{
+				no1 = Math.floor(Math.random()*(900-100+1)+100);
+				no2 = Math.floor(Math.random()*(700-100+1)+100);
+				var sum = no1+no2;
+				var no3max = 1900-(sum);
+				var no3min = 1100-(sum);
+				if(no3min<100){no3min=100;}
+				no3 = Math.floor(Math.random()*(no3max-no3min+1)+no3min);
+				document.getElementById("equation1").innerHTML=no1;
+				document.getElementById("equation3").innerHTML=no2;
+				document.getElementById("equation5").innerHTML=no3;
+			}
+			function lowAnchor()
+			{
+				anchor = Math.floor(Math.random()*(900-700+1)+700);
+				document.getElementById("anchor").innerHTML=anchor;
+			}
+			function highAnchor()
+			{
+				anchor = Math.floor(Math.random()*(2300-2100+1)+2100);
+				document.getElementById("anchor").innerHTML=anchor;
+			}
+			function filler()
+			{
+				anchor = Math.floor(Math.random()*(1700-1300+1)+1300);
+				document.getElementById("anchor").innerHTML=anchor;
+			}
+			function hideEquation()
+			{
+				document.getElementById("equation1").style.visibility = "hidden";
+				document.getElementById("equation2").style.visibility = "hidden";
+				document.getElementById("equation3").style.visibility = "hidden";
+				document.getElementById("equation4").style.visibility = "hidden";
+				document.getElementById("equation5").style.visibility = "hidden";
+				document.getElementById("equation6").style.visibility = "hidden";
+			}
+			function showEquation()
+			{
+				document.getElementById("equation1").style.visibility = "visible";
+				document.getElementById("equation2").style.visibility = "visible";
+				document.getElementById("equation3").style.visibility = "visible";
+				document.getElementById("equation4").style.visibility = "visible";
+				document.getElementById("equation5").style.visibility = "visible";
+				document.getElementById("equation6").style.visibility = "visible";
+			}
+			function displayTime(timeleft)
+			{
+				document.getElementById("time").innerHTML=timeleft;
+			}
+			function timer()
+			{
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(3000).then(() => showEquation());
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(3000).then(() => displayTime(4));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(4000).then(() => displayTime(3));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(5000).then(() => displayTime(2));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(6000).then(() => displayTime(1));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(7000).then(() => displayTime(0));
+				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				delay(7000).then(() => hideEquation());
+			}
+
+		</script>
+	</body>
+</html>
