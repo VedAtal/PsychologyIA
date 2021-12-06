@@ -30,6 +30,13 @@
 			function sumbitAnswer()
 			{
 				document.getElementById("button2").innerHTML="Submit";
+				if(inputbox.value == "")
+				{
+					if(round>0)
+					{
+						return;
+					}
+				}
 				if(round>=10)
 				{
 					document.getElementById("begin").style.visibility = "visible";

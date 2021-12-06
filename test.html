@@ -43,6 +43,13 @@
 			function sumbitAnswer()
 			{
 				document.getElementById("button").innerHTML="Submit";
+				if(inputbox.value == "" || localStorage.getItem("HL") == "neither")
+				{
+					if(round>1)
+					{
+						return;
+					}
+				}
 				data = ["1 = " + no1, "2 = " + no2, "3 = " + no3, "A = " + anchor, "HL = " + localStorage.getItem("HL"), "I = " + inputbox.value, "C = " + (no1+no2+no3)];
 				localStorage.setItem(round-1, data);
 				if(round>=13)
