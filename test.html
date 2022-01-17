@@ -39,9 +39,17 @@
 			var no2 = 0;
 			var no3 = 0;
 			var data = [];
+			var delay0;
+			var delay1;
+			var delay2;
+			var delay3;
+			var delay4;
+			var delay5;
+			var delay6;
 			localStorage.setItem("HL", "neither");
 			function sumbitAnswer()
 			{
+				clearTimeouts();
 				document.getElementById("button").innerHTML="Submit";
 				if(inputbox.value == "" || localStorage.getItem("HL") == "neither")
 				{
@@ -126,22 +134,42 @@
 			{
 				document.getElementById("time").innerHTML=timeleft;
 			}
+			function clearTimeouts()
+			{
+				clearTimeout(delay0);
+				clearTimeout(delay1);
+				clearTimeout(delay2);
+				clearTimeout(delay3);
+				clearTimeout(delay4);
+				clearTimeout(delay5);
+				clearTimeout(delay6);
+				hideEquation();
+				displayTime(0);
+			}
 			function timer()
 			{
-				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
-				delay(3000).then(() => showEquation());
-				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
-				delay(3000).then(() => displayTime(4));
-				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
-				delay(4000).then(() => displayTime(3));
-				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
-				delay(5000).then(() => displayTime(2));
-				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
-				delay(6000).then(() => displayTime(1));
-				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
-				delay(7000).then(() => displayTime(0));
-				function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
-				delay(7000).then(() => hideEquation());
+				delay0 = setTimeout(function(){ showEquation(); }, 3000);
+				delay1 = setTimeout(function(){ displayTime(4); }, 3000);
+				delay2 = setTimeout(function(){ displayTime(3); }, 4000);
+				delay3 = setTimeout(function(){ displayTime(2); }, 5000);
+				delay4 = setTimeout(function(){ displayTime(1); }, 6000);
+				delay5 = setTimeout(function(){ displayTime(0); }, 7000);
+				delay6 = setTimeout(function(){ hideEquation(); }, 7000);
+
+				// function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				// delay(3000).then(() => showEquation());
+				// function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				// delay(3000).then(() => displayTime(4));
+				// function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				// delay(4000).then(() => displayTime(3));
+				// function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				// delay(5000).then(() => displayTime(2));
+				// function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				// delay(6000).then(() => displayTime(1));
+				// function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				// delay(7000).then(() => displayTime(0));
+				// function delay(time) {return new Promise(resolve => setTimeout(resolve, time));}
+				// delay(7000).then(() => hideEquation());
 			}
 
 		</script>
